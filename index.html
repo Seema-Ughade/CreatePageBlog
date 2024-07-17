@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Table</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    
+    <style>
+        #categorySelect, #PromptSelect, #dateSelect {
+            outline: none;
+            background-color: #9896f1;
+            border: none;
+            color: white;
+            font-weight: bold;
+            width: 100%; 
+            appearance: none; 
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+        }
+
+        #categorySelect::-ms-expand, #PromptSelect::-ms-expand {
+            display: none; 
+        }
+
+        .table-bordered {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6; /* Maintain the border styling */
+        }
+
+        .table-bordered td {
+            background: white;
+        }
+
+        #thead-dark {
+            background-color: #9896f1;
+            padding: 20px;
+            color: white;
+        }
+
+        #keywordList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #keywordList li {
+            margin-bottom: 5px;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        #keywordList li input[type="radio"] {
+            margin-top: 6px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        ::placeholder {
+            color: white;
+        }
+         .keyword-column {
+            width: 25%;
+        }
+
+        .category-column {
+            width: 20%;
+        }
+
+        .domain-column {
+            width: 20%;
+        }
+
+        .prompt-column {
+            width: 20%;
+        }
+
+        .date-column {
+            width: 15%;
+        }
+    </style>
+
+</head>
+<body class="bg-light">
+    <div class="container-fluid mt-5 bg-light ">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="table-container create-blog">
+                    <table id="projectTable" class="table table-bordered">
+                        <thead id="thead-dark">
+                            <tr>
+                                <th class="keyword-column"  style="border: none; position: relative;">
+                                    <div class="dropdown">
+                                        <span>Select Keyword</span>
+                                    </div>
+                                </th>
+                                <th class="category-column" style="border: none; position: relative;">
+                                    <select id="categorySelect">
+                                        <option value="Select Category">Select Category</option>
+                                        <option value="Business Growth">Business Growth</option>
+                                        <option value="Sales Strategy">Sales Strategy</option>
+                                        <option value="Market Research">Market Research</option>
+                                        <option value="Customer Retention">Customer Retention</option>
+                                        <option value="Brand Management">Brand Management</option>
+                                        <option value="Competitive Analysis">Competitive Analysis</option>
+                                        <option value="Workplace Diversity">Workplace Diversity</option>
+                                        <option value="Legal & Compliance">Legal & Compliance</option>
+                                        <option value="Public Relations">Public Relations</option>
+                                        <option value="Industry Trends">Industry Trends</option>
+                                        <option value="IT Management">IT Management</option>
+                                    </select>
+                                </th>
+                                <th class="domain-column" style="border: none;">Domain Name</th>
+                                <th class="prompt-column" style="border: none; position: relative;">
+                                    <select id="PromptSelect">
+                                        <option value="Category 1">Prompt Select</option>
+                                        <option value="Market Trends">Market Trends</option>
+                                        <option value="Leadership Strategies">Leadership Strategies</option>
+                                        <option value="Financial Planning">Financial Planning</option>
+                                        <option value="Customer Engagement">Customer Engagement</option>
+                                        <option value="Digital Transformation">Digital Transformation</option>
+                                        <option value="Business Innovation">Business Innovation</option>
+                                        <option value="Risk Management">Risk Management</option>
+                                        <option value="Growth Hacking">Growth Hacking</option>
+                                        <option value="Competitive Analysis">Competitive Analysis</option>
+                                        <option value="Brand Loyalty">Brand Loyalty</option>
+                                    </select>
+                                </th>
+                                <th class="date-column" style="border: none;">
+                                    <input type="text" id="dateSelect" placeholder="Date" readonly style="width: 100%; background-color: #9896f1; border: none; color: white; font-weight: bold;">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!--  row -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+
+                <!-- Keyword Research Section -->
+                <div class="table-container keyword-research">
+                    <table id="keywordResearchTable" class="table table-striped table-bordered">
+                        <thead id="thead-dark">
+                            <tr>
+                                <th style="border: none; padding: 13px;">Keyword List</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div style="padding-top: 10px;">
+                        <input type="text" id="keywordSearchInput" placeholder="Search keywords...">
+                    </div>
+                    <ul id="keywordList" style="padding-top: 10px;">
+                        <li id="IoT"><label><input type="radio" name="keyword" value="IoT"> Internet of Things (IoT)</label></li>
+                        <li id="CloudComputing"><label><input type="radio" name="keyword" value="Cloud Computing"> Cloud Computing</label></li>
+                        <li id="QuantumComputing"><label><input type="radio" name="keyword" value="Quantum Computing"> Quantum Computing</label></li>
+                        <li id="Blockchain"><label><input type="radio" name="keyword" value="Blockchain"> Blockchain</label></li>
+                        <li id="Cybersecurity"><label><input type="radio" name="keyword" value="Cybersecurity"> Cybersecurity</label></li>
+                        <li id="EthicalAI"><label><input type="radio" name="keyword" value="Ethical AI"> Ethical AI</label></li>
+                        <li id="AIandClimateChange"><label><input type="radio" name="keyword" value="AI and Climate Change"> AI and Climate Change</label></li>
+                        <li id="AIandSpaceExploration"><label><input type="radio" name="keyword" value="AI and Space Exploration"> AI and Space Exploration</label></li>
+                        <li id="AIandMilitaryApplications"><label><input type="radio" name="keyword" value="AI and Military Applications"> AI and Military Applications</label></li>
+                        <li id="AIandLanguageTranslation"><label><input type="radio" name="keyword" value="AI and Language Translation"> AI and Language Translation</label></li>
+                        <li id="AIandMusicComposition"><label><input type="radio" name="keyword" value="AI and Music Composition"> AI and Music Composition</label></li>
+                    </ul>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button onclick="createTable()" class="btn btn-primary">Create</button>
+                        <button onclick="cancelCreation()" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#dateSelect").datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function(dateText) {
+                    $("#dateSelect").data("selected-date", dateText);
+                }
+            });
+
+            // Add search functionality
+            $('#keywordSearchInput').on('input', function() {
+                let searchValue = $(this).val().toLowerCase();
+                $('#keywordList li').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1)
+                });
+            });
+        });
+
+        function createTable() {
+            // Get the selected keyword
+            let selectedKeyword = document.querySelector('input[name="keyword"]:checked');
+            if (!selectedKeyword) {
+                alert('Please select a keyword.');
+                return;
+            }
+
+            // Get the value of the selected keyword
+            let keywordValue = selectedKeyword.value;
+
+            // Get the selected category
+            let selectedCategory = document.getElementById('categorySelect').value;
+            if (selectedCategory === "Select Category") {
+                alert('Please select a category.');
+                return;
+            }
+
+            // Get the selected prompt
+            let selectedPrompt = document.getElementById('PromptSelect').value;
+            if (selectedPrompt === "Category 1") {
+                alert('Please select a prompt.');
+                return;
+            }
+
+            // Get the selected date
+            let selectedDate = $("#dateSelect").data("selected-date");
+            if (!selectedDate) {
+                alert('Please select a date.');
+                return;
+            }
+
+            // Create a table row with the selected data
+            let newRow = `
+                <tr>
+                    <td>${keywordValue}</td>
+                    <td>${selectedCategory}</td>
+                    <td>www.example.com</td>
+                    <td>${selectedPrompt}</td>
+                    <td>${selectedDate}</td>
+                </tr>
+            `;
+
+            // Append the new row to the table body
+            let tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML += newRow;
+
+            // Optional: Clear the selected keyword and date
+            selectedKeyword.checked = false;
+            document.getElementById('categorySelect').value = 'Select Category';
+            document.getElementById('PromptSelect').value = 'Category 1';
+            document.getElementById('dateSelect').value = '';
+            $("#dateSelect").removeData("selected-date");
+        }
+
+        function cancelCreation() {
+            // Clear selected keyword and date
+            let selectedKeyword = document.querySelector('input[name="keyword"]:checked');
+            if (selectedKeyword) {
+                selectedKeyword.checked = false;
+            }
+            document.getElementById('categorySelect').value = 'Select Category';
+            document.getElementById('PromptSelect').value = 'Category 1';
+            document.getElementById('dateSelect').value = '';
+            $("#dateSelect").removeData("selected-date");
+        }
+    </script>
+</body>
+</html>
